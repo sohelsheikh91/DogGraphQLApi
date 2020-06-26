@@ -22,21 +22,21 @@ public class Mutator implements GraphQLMutationResolver {
     }
 
     public boolean deleteDogBreed(Long id){
-//        boolean deleted = false;
-//        Iterable<DogBreed> allDogs = dogRepository.findAll();
-//        for(DogBreed d : allDogs){
-//            if(d.getBreed().equals(name)){
-//
-//                dogRepository.delete(d);
-//                deleted = true;
-//            }
-//        }
-//        if(!deleted){
-//            throw new DogNotFoundException("DogNotFound",id);
-//        }
-//         return deleted;
-        dogRepository.deleteById(id);
-        return true;
+        boolean deleted = false;
+        Iterable<DogBreed> allDogs = dogRepository.findAll();
+        for(DogBreed d : allDogs){
+            if(d.getId().equals(id)){
+
+                dogRepository.delete(d);
+                deleted = true;
+            }
+        }
+        if(!deleted){
+            throw new DogNotFoundException("DogNotFound",id);
+        }
+         return deleted;
+//        dogRepository.deleteById(id);
+//        return true;
     }
     public DogBreed updateDogName(String name,Long id){
         Optional<DogBreed> optionalDogBreed = dogRepository.findById(id);
